@@ -30,7 +30,7 @@ def gen_instance(n):
 def run_matcher():
     with TMP_OUT.open("w", encoding="utf-8") as out:
         subprocess.run(
-            [sys.executable, str(ROOT / "main.py"), "-i", str(TMP_IN)],
+            [sys.executable, str(ROOT / "analysis/matcher_test.py"), "-i", str(TMP_IN)],
             stdout=out,
             stderr=subprocess.DEVNULL,
             check=True,
@@ -39,7 +39,7 @@ def run_matcher():
 
 def run_verifier():
     subprocess.run(
-        [sys.executable, str(ROOT / "verify.py"), str(TMP_IN), str(TMP_OUT)],
+        [sys.executable, str(ROOT / "analysis/verifier_test.py"), str(TMP_IN), str(TMP_OUT)],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
         check=True,
