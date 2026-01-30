@@ -15,6 +15,15 @@ def is_stable(
     all_student_prefs: list[list[int]],
     match: list[int],
 ) -> bool:
+    """
+    Args:
+        all_hospital_prefs: A list of the hospitals' prefernces in order
+        all_student_prefs: A list of the students' prefernces in order
+        match: the match you are trying to check is stable
+    
+    Returns:
+        Boolean for whether the match, given the preferences, is stable
+    """
 
     hospital_to_student = {h: s for h, s in enumerate(match, start=1)}
     student_to_hospital = {s: h for h, s in hospital_to_student.items()}
