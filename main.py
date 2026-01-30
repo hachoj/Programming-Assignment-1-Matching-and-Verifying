@@ -1,55 +1,28 @@
 import argparse
-import os
 from pathlib import Path
 
 from src.gale_shapely import gale_shapely
+from src.io_util import read_preferences, InputError
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        prog="Gale Shapely Test",
-        description="Takes paths of input spec and optionally output spec to ... TODO",
-    )
-    parser.add_argument(
-        "-i",
-        "--input",
-        action="store",
-        type=str,
-        required=True,
-        help="Path to input (*.in) file",
-    )
-    parser.add_argument(
-        "-o",
-        "--output",
-        action="store",
-        type=str,
-        help="OPTIONAL path to output (*.out) file",
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", required=True)
     args = parser.parse_args()
 
-    input_path = args.input
-    input_path = Path(input_path)
-    if not os.path.exists(input_path):
+    input_path = Path(args.input)
+    if not input_path.exists():
         raise ValueError(f"There is no file {input_path}.")
 
-    input_file = open(input_path)
-    input_text = input_file.read()
+    try:
+        n, hospital_prefs, student_prefs = read_preferences(str(input_path))
+    except InputError as e:
+        print(f"INVALID ({e})")
+        raise SystemExit(1)
 
-    output_path = args.output
-    if output_path is not None:
-        output_path = Path(output_path)
-        if not os.path.exists(output_path):
-            raise ValueError(f"There is no file {output_path}.")
-
-        output_file = open(output_path)
-        output_text = output_file.read()
-
-    # --- temp print before something is actually implemented ---
-    print(gale_shapely())
-    print(input_text)
-    if output_path is not None:
-        print("-" * 30)
-        print(output_text)
+    match = gale_shapely(n, hospital_prefs, student_prefs)
+    for i, s in enumerate(match, start=1):
+        print(f"{i} {s}")
 
 
 if __name__ == "__main__":
