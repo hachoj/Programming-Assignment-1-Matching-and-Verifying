@@ -1,8 +1,9 @@
-.vscode
+.vscode/
 __pycache__/
 *.pyc
-.env
-.DS_Store
+*.env
+*.DS_Store
 .idea/
-.pytest_cache
+*.pytest_cache
 .pytest_cache/
+*.egg-info

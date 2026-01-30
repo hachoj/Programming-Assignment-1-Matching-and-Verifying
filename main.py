@@ -1,8 +1,9 @@
 import argparse
 from pathlib import Path
 
-from src.gale_shapely import gale_shapely
-from src.io_util import read_preferences, InputError
+from assignment1.gale_shapely import gale_shapely
+from assignment1.io_util import InputError, read_preferences
+from assignment1.verifier import is_stable, one_to_one
 
 
 def main():
@@ -21,8 +22,11 @@ def main():
         raise SystemExit(1)
 
     match = gale_shapely(n, hospital_prefs, student_prefs)
+    print(hospital_prefs)
+    print(student_prefs)
     for i, s in enumerate(match, start=1):
-        print(f"{i} {s}")
+        print(f"Hospital {i} matched with Student {s}")
+    print(is_stable(all_hospital_prefs=hospital_prefs, all_student_prefs=student_prefs, match=match))
 
 
 if __name__ == "__main__":
