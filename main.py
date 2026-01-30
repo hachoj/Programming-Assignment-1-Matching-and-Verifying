@@ -48,19 +48,22 @@ def main():
         print(f"No example outputs given")
         print(f"Gale Shapely results: \n{match_text}")
     print('-' * 30)
+    print('Gale Shapely output:')
+    for hospital, student in enumerate(match, start=1):
+        print(hospital, student)
     
     if args.verify is not None:
         print(f"Running one-to-one check...")
         if one_to_one(match):
-            print("Match is one-to-one!")
+            print("VALID")
         else:
-            print("Match was not one to one.")
+            print("INVALID")
         print('-' * 30)
         print(f"Running stability check...")
         if is_stable(hospital_prefs, student_prefs, match):
-            print("Match is stable!")
+            print("STABLE")
         else:
-            print("Match is not stable.")
+            print("UNSTABLE")
 
 
 
