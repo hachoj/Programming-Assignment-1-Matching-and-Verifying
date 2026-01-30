@@ -6,4 +6,6 @@ __pycache__/
 .idea/
 *.pytest_cache
 .pytest_cache/
+analysis/_tmp.in
+analysis/_tmp.out
 *.egg-info
