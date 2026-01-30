@@ -1,9 +1,9 @@
 import argparse
 from pathlib import Path
 
-from assignment1.gale_shapely import gale_shapely
-from assignment1.io_util import InputError, read_preferences
-from assignment1.verifier import is_stable, one_to_one
+from src.assignment1.gale_shapely import gale_shapely
+from src.assignment1.io_util import InputError, read_preferences
+from src.assignment1.verifier import is_stable, one_to_one
 
 
 def main():
